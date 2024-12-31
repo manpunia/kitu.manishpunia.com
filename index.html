@@ -2,94 +2,74 @@
 <html lang='en'>
 <head>
     <meta charset='UTF-8'>
-    <title>Kitu Manish Punia</title>
+    <title>Kitu's World</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { font-family: Arial, sans-serif; }
-        .post-container { max-width: 800px; margin: 0 auto; }
-        .post-card { margin-bottom: 20px; }
-        .post-image { max-width: 100%; height: auto; }
+        body { 
+            font-family: 'Comic Sans MS', cursive, sans-serif; 
+            background-color: #FFF0F5; /* Soft pink background */
+            color: #333;
+        }
+        .navbar { 
+            background-color: #FFB6C1 !important; /* Light pink navbar */
+        }
+        .post-container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+        }
+        .post-card { 
+            margin-bottom: 20px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .post-image { 
+            max-width: 100%; 
+            height: auto; 
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .post-image:hover {
+            transform: scale(1.05);
+        }
+        .card-body {
+            background-color: #FFF;
+        }
+        h2 {
+            color: #FF69B4;
+            text-align: center;
+            margin-bottom: 30px;
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Kitu's Page</a>
+            <a class="navbar-brand" href="#" style="color: white; font-weight: bold;">Kitu's Magical World</a>
             <div class="navbar-nav">
-                <a class="nav-link" href="https://manishpunia.com">Dad's Website</a>
+                <a class="nav-link" href="https://manishpunia.com" style="color: white;">Dad's Website</a>
             </div>
         </div>
     </nav>
 
     <div class="container mt-4">
         <div class="row">
-            <div class="col-md-6">
-                <h2>Create a New Post</h2>
-                <form id="postForm">
-                    <div class="mb-3">
-                        <label for="postTitle" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="postTitle" required>
+            <div class="col-12">
+                <h2>Kitu's Special Moments</h2>
+                <div id="postsContainer" class="post-container">
+                    <!-- Predefined Post -->
+                    <div class="card post-card">
+                        <img src="image.jpg" class="card-img-top post-image" alt="Kitu's Favorite Moment">
+                        <div class="card-body">
+                            <h5 class="card-title">My Favorite Day</h5>
+                            <p class="card-text">Today was the most amazing day! I played in the park, made new friends, and learned something new. Every moment is a new adventure, and I'm so happy to share it with everyone!</p>
+                            <small class="text-muted">Posted on December 31, 2024</small>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="postContent" class="form-label">Content</label>
-                        <textarea class="form-control" id="postContent" rows="3" required></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="postImage" class="form-label">Image</label>
-                        <input type="file" class="form-control" id="postImage" accept="image/*">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Post</button>
-                </form>
-            </div>
-            <div class="col-md-6">
-                <h2>Posts</h2>
-                <div id="postsContainer" class="post-container"></div>
+                </div>
             </div>
         </div>
     </div>
-
-    <script>
-        document.getElementById('postForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const title = document.getElementById('postTitle').value;
-            const content = document.getElementById('postContent').value;
-            const imageFile = document.getElementById('postImage').files[0];
-            
-            const postContainer = document.getElementById('postsContainer');
-            const postCard = document.createElement('div');
-            postCard.className = 'card post-card';
-            
-            // Create post content
-            let postHTML = `
-                <div class="card-body">
-                    <h5 class="card-title">${title}</h5>
-                    <p class="card-text">${content}</p>
-            `;
-            
-            // Add image if uploaded
-            if (imageFile) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    const img = document.createElement('img');
-                    img.src = event.target.result;
-                    img.className = 'card-img-top post-image';
-                    postCard.insertAdjacentElement('afterbegin', img);
-                };
-                reader.readAsDataURL(imageFile);
-            }
-            
-            postCard.innerHTML += postHTML + `
-                    <small class="text-muted">Posted on ${new Date().toLocaleString()}</small>
-                </div>
-            `;
-            
-            postContainer.insertBefore(postCard, postContainer.firstChild);
-            
-            // Reset form
-            document.getElementById('postForm').reset();
-        });
-    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
